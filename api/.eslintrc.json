@@ -1,0 +1,6 @@
+{
+    "extends": "standard",
+    "rules": {
+        "object-curly-spacing": "off"
+    }
+}
