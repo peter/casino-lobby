@@ -31,7 +31,7 @@ async function readAllGames () {
 function gamesFilter (filterParams) {
   return (game) => {
     return Object.entries(filterParams || {}).every(([key, value]) => {
-      return String.prototype.toString.call(game[key]) === value
+      return game[key] && game[key].toString() === value
     })
   }
 }
