@@ -3,8 +3,6 @@
 ## TODO
 
 * Add ajv, use req.query schema with filter param
-* Refactor into modules in app folder (server, games, errors)
-* JSON Express error handler: https://expressjs.com/en/guide/error-handling.html
 * Ramda - need it?
 
 ## Dependencies
