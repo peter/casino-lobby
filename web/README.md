@@ -1,5 +1,10 @@
 # Casino Lobby Vue.js Web App
 
+## TODO
+
+* Pagination
+* status active
+
 ## Project setup
 ```
 yarn install
@@ -9,6 +14,11 @@ yarn install
 ```
 yarn run serve
 ```
+
+## Styling and CSS
+
+Material Design is included via a CDN in index.html. Markup was picked
+from the official [Semantic UI Examples](https://semantic-ui.com/usage/layout.html)
 
 ### Compiles and minifies for production
 ```

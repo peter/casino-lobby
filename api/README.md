@@ -2,6 +2,8 @@
 
 ## TODO
 
+* offset/limit
+* sort?
 * More unit tests for services/games
 * Use filter query param with patternProperties or use JSON value?
 * Swagger

@@ -2,6 +2,11 @@ const http = require('http')
 const express = require('express')
 const routes = require('app/routes')
 const {assertValidOptions} = require('app/util')
+const {setCorsHeaders} = require('app/middleware/cors')
+
+const middlewares = [
+  setCorsHeaders
+]
 
 // NOTE: By wrapping async Express handlers in this helper function we make
 // sure that any error thrown in the handler is handled by the express error
@@ -31,6 +36,9 @@ function start (options = {}) {
   assertValidOptions(options, ['port'])
   const app = express()
   const server = http.createServer(app)
+  for (const middleware of middlewares) {
+    app.use(middleware)
+  }
   for (const route of routes) {
     app[route.method](route.path, asyncHandler(route.handler))
   }
