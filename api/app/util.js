@@ -7,6 +7,11 @@ function assertValidOptions (options, validKeys) {
   }
 }
 
+function isMissing (value) {
+  return value == null || R.isEmpty(value)
+}
+
 module.exports = {
-  assertValidOptions
+  assertValidOptions,
+  isMissing
 }

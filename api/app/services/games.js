@@ -1,5 +1,6 @@
 const fs = require('fs')
 const util = require('util')
+const {isMissing} = require('app/util')
 const gamesSchema = require('app/services/games_schema')
 const {validationError} = require('app/errors')
 
@@ -31,7 +32,11 @@ async function readAllGames () {
 function gamesFilter (filterParams) {
   return (game) => {
     return Object.entries(filterParams || {}).every(([key, value]) => {
-      return game[key] && game[key].toString() === value
+      if (!isMissing(game[key])) {
+        return game[key].toString() === value
+      } else {
+        return value === ''
+      }
     })
   }
 }
