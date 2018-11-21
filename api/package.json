@@ -4,13 +4,16 @@
   "description": "REST API for the Casino Lobby Web UI",
   "main": "index.js",
   "engines": {
-    "node": "8.10.0"
+    "node": ">=8.10.0"
   },
   "scripts": {
     "start": "NODE_PATH=. node index.js",
     "dev": "NODE_PATH=. $(yarn bin)/nodemon index.js",
     "lint": "$(yarn bin)/eslint *.js",
-    "test": "yarn lint && jest"
+    "test:unit": "jest --testMatch '**app/**.test.js'",
+    "test:unit:watch": "yarn test:unit --watchAll",
+    "test:api": "$(yarn bin)/jest --testMatch '**test/api/suites/*.test.js'",
+    "test": "yarn lint && yarn test:unit && yarn test:api"
   },
   "author": "Peter Marklund",
   "license": "MIT",

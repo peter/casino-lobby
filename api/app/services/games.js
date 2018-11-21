@@ -1,6 +1,6 @@
 const fs = require('fs')
 const util = require('util')
-const {isMissing} = require('app/util')
+const {isMissing, assertValidOptions} = require('app/util')
 const gamesSchema = require('app/services/games_schema')
 const {validationError} = require('app/errors')
 
@@ -32,7 +32,9 @@ async function readAllGames () {
 function gamesFilter (filterParams) {
   return (game) => {
     return Object.entries(filterParams || {}).every(([key, value]) => {
-      if (!isMissing(game[key])) {
+      if (Array.isArray(game[key])) {
+        return value.split(',').every(item => game[key].includes(item))
+      } else if (!isMissing(game[key])) {
         return game[key].toString() === value
       } else {
         return value === ''
@@ -42,6 +44,7 @@ function gamesFilter (filterParams) {
 }
 
 async function getGames (options = {}) {
+  assertValidOptions(options, ['filterParams'])
   const allGames = await readAllGames()
   return allGames.filter(gamesFilter(options.filterParams))
 }

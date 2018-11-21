@@ -3,12 +3,15 @@
 ## TODO
 
 * More unit tests for services/games
-* Add ajv, use req.query schema with filter param
-* Ramda - need it?
+* Use filter query param with patternProperties or use JSON value?
+* Swagger
+* GraphQL
+* Index page with links to Swagger and GraphQL
+* API tests
 
 ## Dependencies
 
-* Node.js 8.10.0 (LTS version that AWS Lambda uses)
+* Node.js 8.10.0 or higher (8.10.0 LTS version that AWS Lambda uses)
 * yarn
 
 ## Install
@@ -25,8 +28,16 @@ yarn dev
 
 ## Testing
 
+Run `lint`, `test:unit`, and `test:api`:
+
 ```
 yarn test
+```
+
+Run unit tests with a watch:
+
+```
+yarn test:unit:watch
 ```
 
 ## Linting

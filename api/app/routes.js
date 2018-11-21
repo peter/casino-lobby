@@ -1,5 +1,6 @@
-const API_PREFIX = 'v1'
 const gamesController = require('app/controllers/games')
+
+const API_PREFIX = 'v1'
 
 const routes = [
   {

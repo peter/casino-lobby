@@ -1,6 +1,8 @@
 {
     "extends": "standard",
     "globals": {
+        "beforeAll": true,
+        "afterAll": true,
         "test": true,
         "expect": true
     },
