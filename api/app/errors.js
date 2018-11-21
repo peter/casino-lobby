@@ -1,4 +1,4 @@
-const status = {
+const statusCodes = {
   INVALID: 422 // Unprocessable Entity
 }
 
@@ -9,11 +9,11 @@ function createError (message, status) {
 }
 
 function validationError (message) {
-  return createError(message, status.INVALID)
+  return createError(message, statusCodes.INVALID)
 }
 
 module.exports = {
-  status,
+  statusCodes,
   createError,
   validationError
 }

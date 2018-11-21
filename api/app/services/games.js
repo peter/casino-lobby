@@ -1,6 +1,6 @@
 const fs = require('fs')
 const util = require('util')
-const gamesSchema = require('app/services/games-schema')
+const gamesSchema = require('app/services/games_schema')
 const {validationError} = require('app/errors')
 
 function parseGamesFilter (queryParams) {
@@ -36,9 +36,9 @@ function gamesFilter (filterParams) {
   }
 }
 
-async function getGames (filterParams) {
+async function getGames (options = {}) {
   const allGames = await readAllGames()
-  return allGames.filter(gamesFilter(filterParams))
+  return allGames.filter(gamesFilter(options.filterParams))
 }
 
 module.exports = {

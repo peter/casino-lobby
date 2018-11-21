@@ -2,6 +2,7 @@
 
 ## TODO
 
+* More unit tests for services/games
 * Add ajv, use req.query schema with filter param
 * Ramda - need it?
 
@@ -20,6 +21,12 @@ yarn install
 
 ```
 yarn dev
+```
+
+## Testing
+
+```
+yarn test
 ```
 
 ## Linting

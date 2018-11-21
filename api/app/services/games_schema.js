@@ -13,7 +13,7 @@ module.exports = {
     'showIsLeavingJurisdiction',
     'allowedOrientation',
     'tags',
-    'gameCollectionIds',
+    // 'gameCollectionIds',
     'gameId',
     'name',
     'width',
@@ -33,6 +33,9 @@ module.exports = {
         '1_can_2_can_ogs'
       ],
       'pattern': '^(.*)$'
+    },
+    'tableId': {
+      'type': 'string'
     },
     'status': {
       'type': 'string',
@@ -62,28 +65,16 @@ module.exports = {
       ]
     },
     'nextOpeningTimeUtc': {
-      'type': 'null',
-      'examples': [
-        null
-      ]
+      'type': ['null', 'string']
     },
     'nextClosingTimeUtc': {
-      'type': 'null',
-      'examples': [
-        null
-      ]
+      'type': ['null', 'string']
     },
     'openingTimeUtc': {
-      'type': 'null',
-      'examples': [
-        null
-      ]
+      'type': ['null', 'string']
     },
     'closingTimeUtc': {
-      'type': 'null',
-      'examples': [
-        null
-      ]
+      'type': ['null', 'string']
     },
     'showIsLeavingJurisdiction': {
       'type': 'boolean',
@@ -152,8 +143,7 @@ module.exports = {
       'type': 'string',
       'examples': [
         'Jag kan, du kan... Tukan! Ta en promenad på den vilda sidan och besök Tukanen och hans vänners värld.  Detta orörda djungelparadis är fylld med färger, roliga frukter, vänliga djur och en Tukan som kommer driva ditt spel vilt med spänning.'
-      ],
-      'pattern': '^(.*)$'
+      ]
     },
     'themeUrl': {
       'type': 'string',
