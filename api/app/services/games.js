@@ -1,8 +1,10 @@
 const fs = require('fs')
 const util = require('util')
-const {isMissing, assertValidOptions} = require('app/util')
+const {isPresent, optionsWithDefaults} = require('app/util')
 const gamesSchema = require('app/services/games_schema')
 const {validationError} = require('app/errors')
+
+const DEFAULT_LIMIT = 100
 
 function parseGamesFilter (queryParams) {
   if (!queryParams) return undefined
@@ -34,7 +36,7 @@ function gamesFilter (filterParams) {
     return Object.entries(filterParams || {}).every(([key, value]) => {
       if (Array.isArray(game[key])) {
         return value.split(',').every(item => game[key].includes(item))
-      } else if (!isMissing(game[key])) {
+      } else if (isPresent(game[key])) {
         return game[key].toString() === value
       } else {
         return value === ''
@@ -44,9 +46,16 @@ function gamesFilter (filterParams) {
 }
 
 async function getGames (options = {}) {
-  assertValidOptions(options, ['filterParams'])
+  options = optionsWithDefaults(options, {filterParams: {}, limit: DEFAULT_LIMIT, offset: 0})
+  const offset = parseInt(options.offset)
+  const limit = parseInt(options.limit)
   const allGames = await readAllGames()
-  return allGames.filter(gamesFilter(options.filterParams))
+  const filteredGames = allGames.filter(gamesFilter(options.filterParams))
+  const slicedGames = filteredGames.slice(offset, (offset + limit))
+  return {
+    count: filteredGames.length,
+    games: slicedGames
+  }
 }
 
 module.exports = {

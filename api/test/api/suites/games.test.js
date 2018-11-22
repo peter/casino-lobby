@@ -17,7 +17,7 @@ async function getGames (params = {}) {
 
 test('GET /v1/games - returns all games and they comply with the JSON schema', async () => {
   const games = await getGames()
-  expect(games.length).toBeGreaterThan(500)
+  expect(games.length).toEqual(100)
   for (const game of games) {
     const schemaErrors = jsonSchema.validate(gamesSchema, game)
     expect(schemaErrors).toBeNull()
@@ -46,4 +46,16 @@ test('GET /v1/games?filter.tags=TABLE,LIVE,ROULETTE - returns all games that inc
   for (const game of games) {
     expect(ids.every(id => game.tags.includes(id))).toBeTruthy()
   }
+})
+
+test('GET /v1/games?limit=3offset=2 - returns games at index 2, 3, and 4 in the listing', async () => {  
+  const limit = 3
+  const offset = 2
+  const limitWithoutOffset = limit + offset
+  const gamesWithoutOffset = await getGames({limit: limitWithoutOffset})
+  expect(gamesWithoutOffset.length).toEqual(limitWithoutOffset)
+
+  const games = await getGames({limit, offset})
+  expect(games.length).toEqual(limit)
+  expect(games).toEqual(gamesWithoutOffset.slice(offset))
 })

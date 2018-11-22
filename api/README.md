@@ -2,18 +2,17 @@
 
 ## TODO
 
-* offset/limit
-* sort?
-* More unit tests for services/games
-* Use filter query param with patternProperties or use JSON value?
-* Swagger
-* GraphQL
+* Swagger. See [this swagger implementation as example](https://github.com/versioned/versioned-api/blob/master/lib/swagger_util.js)
+* GraphQL. See [this graphql implementation as example](https://github.com/versioned/versioned-api/blob/master/app/graphql.js)
 * Index page with links to Swagger and GraphQL
-* API tests
+* Logging
+* Deployment
+* We should maybe change the filter query to be a single param with a JSON value? That should work better with Swagger.
+* Sort?
 
 ## Dependencies
 
-* Node.js 8.10.0 or higher (8.10.0 LTS version that AWS Lambda uses)
+* Node.js 8.10.0 or higher (8.10.0 is the LTS version that AWS Lambda uses)
 * yarn
 
 ## Install
@@ -40,6 +39,12 @@ Run unit tests with a watch:
 
 ```
 yarn test:unit:watch
+```
+
+Running a single test (an API test in this case):
+
+```
+yarn test:api --testMatch games --testNamePattern offset
 ```
 
 ## Linting

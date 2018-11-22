@@ -2,16 +2,19 @@
 
 ## TODO
 
+* Better and more appealing design/CSS
 * Pagination. Can be built like in like in [this DataList component](https://github.com/versioned/versioned-admin/blob/master/src/components/data/DataList.vue)
 * End-to-end tests with Cypress. Example of how to do this, see: [kitchensink.js](https://github.com/versioned/versioned-admin/blob/master/tests/e2e/specs/kitchensink.js)
-* Better and more appealing design/CSS
 
 ## Installation
+
 ```
 yarn install
 ```
 
 ### Run Development Server
+
+Make sure you have the Node API running first and then start the Vue app:
 
 ```
 yarn serve

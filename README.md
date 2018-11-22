@@ -1,7 +1,6 @@
 # Casino Lobby
 
-## TODO
+This is an implementation of the [Casino Lobby assignment](ASSIGNMENT.md).
 
-* Heroku deploy
-* Create Vue app in web
-* Instructions in README on install/setup
+* There is a Node.js/Express API in the `api` folder - see [api/README.md](api/README.md)
+* There is a Vue.js app in the `web` folder - see [web/README.md](api/README.md)

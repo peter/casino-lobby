@@ -241,9 +241,9 @@ export default {
   methods: {
     getData () {
       this.games = []
-      const options = {params: this.filterParams()}
-      Games.list(options).then(({games}) => {
-        this.games = games.slice(0, LIMIT)
+      const params = Object.assign(this.filterParams(), {limit: LIMIT})
+      Games.list({params}).then(({games}) => {
+        this.games = games
       })
     },
     filterParams () {
