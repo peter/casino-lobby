@@ -12,6 +12,12 @@ module.exports = {
     'no-debugger': process.env.NODE_ENV === 'production' ? 'error' : 'off',
     'object-curly-spacing': 'off'
   },
+  globals: {
+    "beforeAll": true,
+    "afterAll": true,
+    "test": true,
+    "expect": true
+  },
   parserOptions: {
     parser: 'babel-eslint'
   }
