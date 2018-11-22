@@ -1,4 +1,6 @@
-# Casino Lobby Vue.js Web App
+# Casino Lobby Web App
+
+This is a Vue.js app that talks to the Casino Lobby API and renders the UI.
 
 ## TODO
 
