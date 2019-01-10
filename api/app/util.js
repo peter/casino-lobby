@@ -22,7 +22,7 @@ function assertValidOptions (options, validKeys) {
   }
 }
 
-// NOTE: this function could be extended to do script type checks and/or type coercion (non-strict)
+// NOTE: this function could be extended to do type checks and/or type coercion
 function optionsWithDefaults (options, defaultOptions) {
   const result = R.merge(defaultOptions, compact(options))
   assertValidOptions(result, Object.keys(defaultOptions))
