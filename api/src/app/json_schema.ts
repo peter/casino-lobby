@@ -1,12 +1,12 @@
 const Ajv = require('ajv')
 const ajv = new Ajv({allErrors: true})
 
-function validate (schema, data) {
+export function validate (schema: object, data: any): any[] {
   const validate = ajv.compile(schema)
   validate(data)
   return validate.errors
 }
 
-module.exports = {
+export default {
   validate
 }

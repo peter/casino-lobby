@@ -1,6 +1,6 @@
-const {getGames} = require('./games')
-const gamesSchema = require('./games_schema')
-const jsonSchema = require('app/json_schema')
+import {getGames} from 'app/services/games'
+import gamesSchema from 'app/services/games_schema'
+import jsonSchema from 'app/json_schema'
 
 test('getGames - gets all games by default. Games comply with the games JSON schema', async () => {
   const {games} = await getGames()

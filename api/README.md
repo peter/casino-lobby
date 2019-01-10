@@ -49,7 +49,7 @@ yarn test:api --testMatch games --testNamePattern offset
 
 ## Linting
 
-Uses the ESLint standard style:
+Uses the tslint standard style:
 
 ```
 yarn lint

@@ -1,6 +1,6 @@
 # Building a casino lobby
 
-This assignment is intended to be the foundation for a discussion with a coworker at Mr Green.
+This assignment is intended to be the foundation for a discussion with a coworker.
 Your job is to create the first iteration of a casino lobby, we provide you with the data, the rest is up to you.
 You'll find the data you need in `lib`.
 

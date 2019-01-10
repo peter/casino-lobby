@@ -5,7 +5,7 @@ This is a Vue.js app that talks to the Casino Lobby API and renders the UI.
 ## TODO
 
 * Better and more appealing design/CSS
-* Pagination. Can be built like in like in [this DataList component](https://github.com/versioned/versioned-admin/blob/master/src/components/data/DataList.vue)
+* Pagination. Can be built like in [this DataList component](https://github.com/versioned/versioned-admin/blob/master/src/components/data/DataList.vue)
 * End-to-end tests with Cypress. Example of how to do this, see: [kitchensink.js](https://github.com/versioned/versioned-admin/blob/master/tests/e2e/specs/kitchensink.js)
 
 ## Installation

@@ -1,6 +1,6 @@
 const {parseGamesFilter, getGames} = require('app/services/games')
 
-async function list (req, res, next) {
+export async function list (req: any, res: any, next: Function): Promise<void> {
   // TODO: get games filter from req.query
   const filterParams = parseGamesFilter(req.query)
   const {limit, offset} = req.query
@@ -8,6 +8,6 @@ async function list (req, res, next) {
   res.json(data)
 }
 
-module.exports = {
+export default {
   list
 }

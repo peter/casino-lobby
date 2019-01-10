@@ -1,15 +1,26 @@
 const fs = require('fs')
 const util = require('util')
-const {isPresent, optionsWithDefaults} = require('app/util')
-const gamesSchema = require('app/services/games_schema')
-const {validationError} = require('app/errors')
+import {isPresent, optionsWithDefaults} from 'app/util'
+import gamesSchema from 'app/services/games_schema'
+import {validationError} from 'app/errors'
 
 const DEFAULT_LIMIT = 100
 
-function parseGamesFilter (queryParams) {
+interface Params {
+  [key: string]: any
+}
+
+interface Games {
+  count: number
+  games: object[]
+}
+
+type Filter = (game: object) => boolean
+
+export function parseGamesFilter (queryParams: object): Params | undefined {
   if (!queryParams) return undefined
   const validFieldNames = Object.keys(gamesSchema.properties)
-  return Object.entries(queryParams).reduce((acc, [key, value]) => {
+  return Object.entries(queryParams).reduce((acc: Params, [key, value]) => {
     if (key.startsWith('filter.')) {
       const fieldName = key.split('.')[1]
       if (validFieldNames.includes(fieldName)) {
@@ -22,20 +33,20 @@ function parseGamesFilter (queryParams) {
   }, {})
 }
 
-async function readAllGames () {
+async function readAllGames (): Promise<object[]> {
   const GAMES_FILE_PATH = '../all-games.json'
   const ENCODING = 'utf8'
   const readFile = util.promisify(fs.readFile)
-  return readFile(GAMES_FILE_PATH, ENCODING).then(data => {
+  return readFile(GAMES_FILE_PATH, ENCODING).then((data: string) => {
     return JSON.parse(data)
   })
 }
 
-function gamesFilter (filterParams) {
-  return (game) => {
+function gamesFilter (filterParams: object): Filter {
+  return (game: any) => {
     return Object.entries(filterParams || {}).every(([key, value]) => {
       if (Array.isArray(game[key])) {
-        return value.split(',').every(item => game[key].includes(item))
+        return value.split(',').every((item: any) => game[key].includes(item))
       } else if (isPresent(game[key])) {
         return game[key].toString() === value
       } else {
@@ -45,12 +56,12 @@ function gamesFilter (filterParams) {
   }
 }
 
-async function getGames (options = {}) {
-  options = optionsWithDefaults(options, {filterParams: {}, limit: DEFAULT_LIMIT, offset: 0})
-  const offset = parseInt(options.offset)
-  const limit = parseInt(options.limit)
+export async function getGames (options = {}): Promise<Games> {
+  const _options: any = optionsWithDefaults(options, {filterParams: {}, limit: DEFAULT_LIMIT, offset: 0})
+  const offset = parseInt(_options.offset, 10)
+  const limit = parseInt(_options.limit, 10)
   const allGames = await readAllGames()
-  const filteredGames = allGames.filter(gamesFilter(options.filterParams))
+  const filteredGames = allGames.filter(gamesFilter(_options.filterParams))
   const slicedGames = filteredGames.slice(offset, (offset + limit))
   return {
     count: filteredGames.length,
@@ -58,7 +69,7 @@ async function getGames (options = {}) {
   }
 }
 
-module.exports = {
+export default {
   parseGamesFilter,
   getGames
 }

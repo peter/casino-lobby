@@ -1,0 +1,18 @@
+{
+    "defaultSeverity": "error",
+    "extends": [
+        "tslint-config-standard"
+    ],
+    "globals": {
+        "beforeAll": true,
+        "afterAll": true,
+        "test": true,
+        "expect": true
+    },
+    "jsRules": {},
+    "rules": {
+        "object-curly-spacing": [false, "never"],
+        "no-empty": [false, "never"]
+    },
+    "rulesDirectory": []
+}

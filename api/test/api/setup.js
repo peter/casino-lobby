@@ -1,4 +1,4 @@
-const server = require('app/server')
+const server = require('app/server').default
 const config = require('./config')
 const util = require('util')
 

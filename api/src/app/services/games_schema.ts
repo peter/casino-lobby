@@ -1,4 +1,4 @@
-module.exports = {
+export default {
   'type': 'object',
   'required': [
     'id',
@@ -167,7 +167,7 @@ module.exports = {
       'pattern': '^(.*)$'
     },
     'trivia': {
-      'type': 'array',
+      'type': 'array'
     },
     'seoName': {
       'type': 'string',

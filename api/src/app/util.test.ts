@@ -1,4 +1,4 @@
-const u = require('./util')
+import * as u from 'app/util'
 
 test('isMissing/isPresent - returns true/false for null/undefined and empty arrays and objects', () => {
   const missingValues = [null, undefined, {}, []]

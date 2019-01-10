@@ -1,12 +1,15 @@
-const R = require('ramda')
+import * as R from 'ramda'
 
-function isMissing (value) {
+type nil = null | undefined
+type Collection = object | any[]
+
+export function isMissing (value: any): boolean {
   return value == null || R.isEmpty(value)
 }
 
-const isPresent = R.complement(isMissing)
+export const isPresent = R.complement(isMissing)
 
-function compact (collection) {
+export function compact (collection: Collection | nil): Collection | undefined {
   if (collection == null) return undefined
   if (Array.isArray(collection)) {
     return R.filter(isPresent, collection)
@@ -15,21 +18,20 @@ function compact (collection) {
   }
 }
 
-function assertValidOptions (options, validKeys) {
+export function assertValidOptions (options: object, validKeys: string[]): void {
   const invalidKeys = R.difference(Object.keys(options), validKeys)
   if (!R.isEmpty(invalidKeys)) {
     throw new Error(`Found the following invalid keys in options: ${invalidKeys.join(', ')}. Valid keys are: ${validKeys.join(', ')}`)
   }
 }
 
-// NOTE: this function could be extended to do type checks and/or type coercion
-function optionsWithDefaults (options, defaultOptions) {
+export function optionsWithDefaults (options: object, defaultOptions: object): object {
   const result = R.merge(defaultOptions, compact(options))
   assertValidOptions(result, Object.keys(defaultOptions))
   return result
 }
 
-module.exports = {
+export default {
   isMissing,
   isPresent,
   compact,
